@@ -13,7 +13,7 @@ O sistema simula gerenciamento de aeroporto, onde é possível:
 - Editar informações de Companhia Aérea, Passageiro e Aeronave;
 - Cadastrar voos informando o aeroporto de destino e aeronave, é validado se a aeronave pode realizar o devido voo e também estimado o tempo;
 - Não é possível cadastrar um voo que a aeronave não tem autonomia para realizar;
-- O tempo do voo é calculado levando em consideração a velocidade de voo e a distância entre o aeroporto OnTheFly e o destino;
+- O tempo do voo é calculado levando em consideração a velocidade de voo e a distância do aeroporto;
 - É possível visualizar os aeroportos de destino no momento do cadastro do voo;
 - Cancelar voos;
 - Filtrar voos (Agendados, Em Rota no momento, Realizados, Cancelados);
