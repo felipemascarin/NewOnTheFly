@@ -1,0 +1,96 @@
+Sistema de Gerenciamento Aeroporto NewOnTheFly
+
+
+É necessário baixar o arquivo Destino.dat e colar na pasta que o programa criará (c:\NewOnTheFly) - Não é possível cadastrar voos sem esse arquivo.
+O sistema trabalha com o banco de dados SQLServer, o modelo para criação do banco e tabelas está incluso nesse projeto.
+
+
+O sistema simula gerenciamento de aeroporto, onde é possível:
+
+- Cadastrar Companhia Aérea com data mínima de abertura da empresa de 6 meses;
+- Cadastrar Aeronave informando a velocidade de voo e autonomia de distância máxima, para os cálculos;
+- Cadastrar Passageiro;
+- Editar informações de Companhia Aérea, Passageiro e Aeronave;
+- Cadastrar voos informando o aeroporto de destino e aeronave, é validado se a aeronave pode realizar o devido voo e também estimado o tempo;
+- Não é possível cadastrar um voo que a aeronave não tem autonomia para realizar;
+- O tempo do voo é calculado levando em consideração a velocidade de voo e a distância entre o aeroporto OnTheFly e o destino;
+- É possível visualizar os aeroportos de destino no momento do cadastro do voo;
+- Cancelar voos;
+- Filtrar voos (Agendados, Em Rota no momento, Realizados, Cancelados);
+- O sistema atualiza os estados dos voos automaticamente;
+- Comprar passagens (No máximo 4 passagens por compra);
+- Reservar passagens (Reserva dura no máximo 2 dias, é atualizado automaticamente);
+- Cancelar ou comprar passagem que está reservada;
+- Não é possível cadastrar um voo onde a data de partida ou de chegada coincide com outro voo que a aeronave já tem relação naquela data;
+
+
+
+
+Todos os valores de entradas são tratados e validados conforme o necessário:
+
+ValidarEntrada(String entrada);
+
+- recebe uma string como parâmetros (listados a seguir)
+- realiza um tratamento do valor de entrada escolhido
+- retorna um valor como string que pode ser convertido posteriormente
+- A função fica pedindo a entrada do dado correto e se a verificação falhar, da a opção pro usuário tentar novamente
+- Retorna nullo se o usuário cancelar a tentativa de entrada dos dados
+- Quando retornar NULL significa para o controle do retorno somente que é pra cancelar, voltar para o menu anterior
+
+
+parâmetros:
+
+("menu") - retorna um string numerio (qualquer numero digitado - Tratamento é feito no switch case do menu)
+
+("cpf") - valida, procura se já existe cadastro. Se NÃO existir retorna 11 alfanumericos (para cadastro)
+
+("cnpj") - valida, procura se já existe cadastro e se NÃO EXISTIR retorna 14 alfanumericos (Para Cadastro)
+
+("cnpjexiste") - Procura se já existe cadastro, e se EXISTIR retorna 14 alfanumericos (para edição de dados)
+
+("cnpjlogin") - verifica se já existe cadastro, verifica se está ativo, verificar se está Bloqueado, retornar cnpj (Para Cadastro Aeronave e Voo)
+
+("nome") - valida e retorna um nome/razaosocial
+
+("sexo") - valida e retorna STRING maiúscula M / F / N
+	
+("datanascimento") - valida o nascimento e retorna um STRING de data com 8 caracteres
+
+("dataabertura") - valida a data (Se for menos de 6 meses retorna NULL NA HORA!) se for válido retorna um STRING de data
+
+("datavoo") - Valida e retorna um STRING de data com 12 caracteres, considera a hora
+
+("idaeronave") - le o id da aeronave e verifica se é valido, depois se existe cadastro. Se NÃO existir retorna o idaeronave. (Cadastro aeronave)
+
+("capacidade") - valida quantidade de assentos e retorna STRING alfanumérico de 3 digitos
+
+("situacao") - lê 1 ou 2 obrigatoriamente e retorna STRING maiúscula A ou I
+
+("destino") - le a iata do destino e verifica se existe cadastro. Retorna a iata do destino como string
+
+("aeronave") - le o id da aeronave, verifica se a situação está ativa e verifica se existe cadastro. Se existir retorna o idaeronave. (Cadastro voo)
+
+("aeronaveeditar") - le o id da aeronave, verifica se existe cadastro. Se existir retorna o idaeronave. (Editar aeronave)
+
+("valorpassagem") - valida e retorna o valor da passagem como string
+
+("idvenda") - le um idvenda válido existente
+
+("cpfvenda") - verifica se já existe cadastro, verifica se está ativo, verifica se é maior de 18, verifica se tem restrição, retorna o valor do cpf (Para compra de Passagem)
+
+("cpfexiste") - Se existir cpf cadastrado, retorna o cpf, se não existir retorna null. (Para Login editar Passageiro).
+
+("idvoo") - Verifica se existe o cadastro do voo. Se existir retorna o idvoo (Para Tela de compras e filtro voo).
+
+("dataescolhida") - le entrada de data válida (filtrar voos por data específica)
+
+("datainicial") - le entrada de data válida (filtrar voos por intervalo de data)
+
+("datafinal") - le entrada de data válida (filtrar voos por intervalo de data)
+
+("velocidadevoo") - le entrada válida da velocidade de voo da aeronave (para calcular tempo de voo) - Mínimo 300 km/h, Máximo 4.000 km/h
+
+("distanciavoomax") - le entrada válida do atributo de distância máxima de voo da aeronave (para validar cadastro de voo)
+Aeroporto só aceita cadastros de Aeronaves com rota mínima 500 km e máxima 20000 km
+
+("idpassagem") - Procura se existe o ID da passagem (Menu informações passagem)
