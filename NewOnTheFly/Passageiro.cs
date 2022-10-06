@@ -51,7 +51,7 @@ namespace NewOnTheFly
             if (sexochar.Equals(null)) Menu.MenuPassageiro();
 
             if (sexochar == 'M') sexo = "Masculino";
-            else if (sexochar == 'M') sexo = "Feminino";
+            else if (sexochar == 'F') sexo = "Feminino";
             else if (sexochar == 'N') sexo = "Não Informado";
 
 
