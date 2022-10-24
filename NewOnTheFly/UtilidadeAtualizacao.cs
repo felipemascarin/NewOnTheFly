@@ -59,7 +59,7 @@ namespace NewOnTheFly
             String comando = "update Voo set Situacao = 'Em Rota' where Data_Hora_Voo < '" + System.DateTime.Now + "' and Data_Chegada >  '" + System.DateTime.Now + "'";
             ConexaoBanco.InjetarSqlExecuteNonQuery(comando);
 
-            comando = "update Voo set Situacao = 'Realizado' where Data_Hora_Voo < '" + System.DateTime.Now + "' and Data_Chegada <  '" + System.DateTime.Now + "'";
+            comando = "update Voo set Situacao = 'Finalizado' where Data_Hora_Voo < '" + System.DateTime.Now + "' and Data_Chegada <  '" + System.DateTime.Now + "'";
             ConexaoBanco.InjetarSqlExecuteNonQuery(comando);
         }
 
